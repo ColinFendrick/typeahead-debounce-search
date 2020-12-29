@@ -2,12 +2,14 @@ import { useState, useCallback, useEffect } from 'react';
 import debounce from 'lodash.debounce';
 
 import Results from './Results';
+import AnimatedResults from './AnimatedResults';
 import SearchSelect from './SearchSelect';
 import raw from './data';
 
 const Search = () => {
 	let res = raw;
 	res = [...Array(50)].map((_, i) => raw[i % raw.length]);
+
 	const [query, setQuery] = useState('');
 	const [data, setData] = useState(res);
 	const onChange = e =>
@@ -49,7 +51,8 @@ const Search = () => {
 				<SearchSelect onChange={onTypeaheadChange} value={query} />
 			</div>
 			<div>
-				<Results data={data} />
+				{/* <Results data={data} /> */}
+				<AnimatedResults data={data} />
 			</div>
 		</div>
 	);

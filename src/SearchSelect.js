@@ -1,4 +1,5 @@
 import Select from 'react-select';
+
 import raw from './data';
 
 const SearchSelect = ({ onChange, value }) => {
