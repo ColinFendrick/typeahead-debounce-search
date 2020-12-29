@@ -6,15 +6,17 @@ import SearchSelect from './SearchSelect';
 import raw from './data';
 
 const Search = () => {
+	let res = raw;
+	res = [...Array(50)].map((_, i) => raw[i % raw.length]);
 	const [query, setQuery] = useState('');
-	const [data, setData] = useState(raw);
+	const [data, setData] = useState(res);
 	const onChange = e =>
 		setQuery(e.target.value);
 
 	const onTypeaheadChange = e => setQuery(e.value);
 
 	const updateQuery = () => {
-		const res = raw.filter(({ title }) => {
+		const search = res.filter(({ title }) => {
 			// return title.toLowerCase().includes(query.toLowerCase());
 			const queryArr = query.toLowerCase().split(' ');
 			const titleArr = title.toLowerCase().split(' ');
@@ -28,7 +30,7 @@ const Search = () => {
 			}).filter(e => e).length === queryArr.length;
 		});
 
-		setData(res);
+		setData(search);
 	};
 
 	const delayedQuery = useCallback(debounce(updateQuery, 500), [query]);
@@ -36,7 +38,6 @@ const Search = () => {
 	useEffect(() => {
 		delayedQuery();
 
-		// Cancel previous debounce calls during useEffect cleanup.
 		return delayedQuery.cancel;
 	}, [setQuery, delayedQuery]);
 
@@ -47,7 +48,6 @@ const Search = () => {
 				<input type='text' value={query} placeholder='search...' onChange={onChange} />
 				<SearchSelect onChange={onTypeaheadChange} value={query} />
 			</div>
-			<h1>{query}</h1>
 			<div>
 				<Results data={data} />
 			</div>
