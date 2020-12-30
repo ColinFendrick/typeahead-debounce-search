@@ -7,10 +7,8 @@ import TopBar from './TopBar';
 const Container = () => {
 	const [props, set] = useSpring(() => ({ int: 1 }));
 
-	const onScroll = e => {
-		const val = (1 - e.target.scrollTop / 300);
-		set({ int: val > 0 ? val : 0 });
-	};
+	const onScroll = e =>
+		set({ int: Math.max((1 - e.target.scrollTop / 300), 0) });
 
 	return (
 		<div className='container'>
