@@ -1,5 +1,5 @@
 import {
-	animated,
+	animated as a,
 	useTransition,
 	config
 } from 'react-spring';
@@ -22,11 +22,10 @@ const AnimatedResults = ({ data }) => {
 		config: config.slow
 	});
 
-
 	return (
 		<ul>
 			{transitions.map(({ item, props, key }) =>
-				<animated.li key={key} style={props}>{item.title}</animated.li>
+				<a.li key={key} style={props}>{item.title}</a.li>
 			)}
 		</ul>
 

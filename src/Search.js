@@ -44,7 +44,7 @@ const Search = () => {
 	}, [setQuery, delayedQuery]);
 
 	return (
-		<div>
+		<div className='search'>
 			<div>
 				<p>Type to search!</p>
 				<input type='text' value={query} placeholder='search...' onChange={onChange} />

@@ -1,9 +1,9 @@
 import './App.css';
 
-import Search from './Search';
+import Container from './Container';
 
 const App = () => (
-	<Search />
+	<Container />
 );
 
 export default App;
